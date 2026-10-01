@@ -1,0 +1,143 @@
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+h2 {
+  margin: 0 0 6px;
+}
+
+.descricao {
+  margin-top: 0;
+  color: #666;
+}
+
+fieldset {
+  border: 1px solid #d8dde6;
+  border-radius: 8px;
+  margin: 24px 0;
+  padding: 20px;
+}
+
+legend {
+  font-weight: 700;
+  padding: 0 8px;
+}
+
+.campo {
+  margin-bottom: 16px;
+}
+
+.campo > label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #b7bec8;
+  border-radius: 6px;
+  font: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #aabfe7;
+  border-color: #365f9d;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.opcoes {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.opcoes-coluna {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.opcoes label,
+.checkbox-linha,
+.termos label {
+  cursor: pointer;
+}
+
+.bloco-condicional {
+  background: #f7f9fc;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+.erro {
+  display: block;
+  color: #b42318;
+  margin-top: 5px;
+}
+
+.contador {
+  display: block;
+  text-align: right;
+  color: #666;
+  margin-top: 4px;
+}
+
+.termos {
+  margin: 18px 0;
+}
+
+.botao-enviar {
+  background: #202938;
+  color: white;
+  border: none;
+  padding: 13px 18px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.botao-enviar:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.sucesso {
+  margin-top: 22px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #edf8f0;
+  border: 1px solid #b7dfc1;
+}
+
+.sucesso h3 {
+  margin-top: 0;
+}
+
+@media (max-width: 700px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 16px;
+  }
+}

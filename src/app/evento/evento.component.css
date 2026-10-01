@@ -1,0 +1,85 @@
+* {
+  box-sizing: border-box;
+}
+
+.pagina-evento {
+  min-height: 100vh;
+  background: #f4f6f9;
+}
+
+.cabecalho {
+  background: #202938;
+  color: white;
+  padding: 24px 32px;
+}
+
+.cabecalho h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+}
+
+.cabecalho p {
+  margin: 0;
+  opacity: 0.85;
+}
+
+.layout {
+  display: flex;
+  min-height: calc(100vh - 104px);
+}
+
+.menu-lateral {
+  width: 220px;
+  background: white;
+  border-right: 1px solid #ddd;
+  padding: 24px 18px;
+}
+
+.menu-lateral h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.menu-lateral a {
+  display: block;
+  text-decoration: none;
+  color: #202938;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.menu-lateral a:hover,
+.menu-lateral a.ativo {
+  background: #e7edf7;
+}
+
+.conteudo {
+  flex: 1;
+  padding: 28px;
+}
+
+@media (max-width: 700px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .menu-lateral {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .menu-lateral h2 {
+    width: 100%;
+  }
+
+  .conteudo {
+    padding: 16px;
+  }
+}

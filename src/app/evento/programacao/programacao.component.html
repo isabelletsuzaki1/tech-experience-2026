@@ -1,0 +1,13 @@
+<section class="programacao">
+  <h2>Programação</h2>
+  <p>Confira as atividades do Tech Experience 2026.</p>
+
+  <div class="lista">
+    @for (atividade of atividades; track atividade.horario) {
+      <article class="atividade">
+        <div class="horario">{{ atividade.horario }}</div>
+        <div class="titulo">{{ atividade.titulo }}</div>
+      </article>
+    }
+  </div>
+</section>

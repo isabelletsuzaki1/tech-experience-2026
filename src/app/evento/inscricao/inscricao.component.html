@@ -1,0 +1,489 @@
+<section class="card">
+  <h2>Inscrição</h2>
+  <p class="descricao">Preencha os dados para participar do Tech Experience 2026.</p>
+
+  <form #formulario="ngForm" (ngSubmit)="realizarInscricao()">
+
+    <fieldset>
+      <legend>Dados Pessoais</legend>
+
+      <div class="campo">
+        <label for="nome">Nome completo</label>
+        <input
+          id="nome"
+          type="text"
+          name="nome"
+          [(ngModel)]="participante.nome"
+          #nome="ngModel"
+          required
+          minlength="5">
+
+        <small class="erro" *ngIf="nome.invalid && nome.touched">
+          <span *ngIf="nome.errors?.['required']">O nome é obrigatório.</span>
+          <span *ngIf="nome.errors?.['minlength']">
+            O nome deve possuir pelo menos 5 caracteres.
+          </span>
+        </small>
+      </div>
+
+      <div class="grid-2">
+        <div class="campo">
+          <label for="cpf">CPF</label>
+          <input
+            id="cpf"
+            type="text"
+            name="cpf"
+            [(ngModel)]="participante.cpf"
+            #cpf="ngModel"
+            required
+            pattern="[0-9]{11}"
+            maxlength="11"
+            inputmode="numeric">
+
+          <small class="erro" *ngIf="cpf.invalid && cpf.touched">
+            Informe exatamente 11 números.
+          </small>
+        </div>
+
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            [(ngModel)]="participante.email"
+            #email="ngModel"
+            required
+            email>
+
+          <small class="erro" *ngIf="email.invalid && email.touched">
+            Informe um e-mail válido.
+          </small>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="campo">
+          <label for="telefone">Telefone</label>
+          <input
+            id="telefone"
+            type="text"
+            name="telefone"
+            [(ngModel)]="participante.telefone"
+            #telefone="ngModel"
+            required
+            pattern="[0-9]{10,11}"
+            maxlength="11"
+            inputmode="numeric">
+
+          <small class="erro" *ngIf="telefone.invalid && telefone.touched">
+            Informe entre 10 e 11 números.
+          </small>
+        </div>
+
+        <div class="campo">
+          <label for="dataNascimento">Data de nascimento</label>
+          <input
+            id="dataNascimento"
+            type="date"
+            name="dataNascimento"
+            [(ngModel)]="participante.dataNascimento"
+            #dataNascimento="ngModel"
+            required>
+
+          <small class="erro" *ngIf="dataNascimento.invalid && dataNascimento.touched">
+            A data de nascimento é obrigatória.
+          </small>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Endereço</legend>
+
+      <div class="grid-2">
+        <div class="campo">
+          <label for="cep">CEP</label>
+          <input
+            id="cep"
+            type="text"
+            name="cep"
+            [(ngModel)]="participante.endereco.cep"
+            #cep="ngModel"
+            required
+            pattern="[0-9]{8}"
+            maxlength="8"
+            inputmode="numeric">
+
+          <small class="erro" *ngIf="cep.invalid && cep.touched">
+            Informe exatamente 8 números.
+          </small>
+        </div>
+
+        <div class="campo">
+          <label for="numero">Número</label>
+          <input
+            id="numero"
+            type="text"
+            name="numero"
+            [(ngModel)]="participante.endereco.numero"
+            #numero="ngModel"
+            required>
+
+          <small class="erro" *ngIf="numero.invalid && numero.touched">
+            O número é obrigatório.
+          </small>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="rua">Rua</label>
+        <input
+          id="rua"
+          type="text"
+          name="rua"
+          [(ngModel)]="participante.endereco.rua"
+          #rua="ngModel"
+          required>
+
+        <small class="erro" *ngIf="rua.invalid && rua.touched">
+          A rua é obrigatória.
+        </small>
+      </div>
+
+      <div class="campo">
+        <label for="complemento">Complemento</label>
+        <input
+          id="complemento"
+          type="text"
+          name="complemento"
+          [(ngModel)]="participante.endereco.complemento">
+      </div>
+
+      <div class="grid-2">
+        <div class="campo">
+          <label for="cidade">Cidade</label>
+          <input
+            id="cidade"
+            type="text"
+            name="cidade"
+            [(ngModel)]="participante.endereco.cidade"
+            #cidade="ngModel"
+            required>
+
+          <small class="erro" *ngIf="cidade.invalid && cidade.touched">
+            A cidade é obrigatória.
+          </small>
+        </div>
+
+        <div class="campo">
+          <label for="estado">Estado</label>
+          <select
+            id="estado"
+            name="estado"
+            [(ngModel)]="participante.endereco.estado"
+            #estado="ngModel"
+            required>
+            <option value="">Selecione um estado</option>
+            <option value="SP">São Paulo</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PR">Paraná</option>
+            <option value="SC">Santa Catarina</option>
+          </select>
+
+          <small class="erro" *ngIf="estado.invalid && estado.touched">
+            Selecione um estado.
+          </small>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Informações Profissionais</legend>
+
+      <div class="campo">
+        <label>Situação profissional</label>
+
+        <div class="opcoes">
+          <label>
+            <input type="radio" name="situacaoProfissional"
+                   value="Estudante"
+                   [(ngModel)]="participante.situacaoProfissional"
+                   required>
+            Estudante
+          </label>
+
+          <label>
+            <input type="radio" name="situacaoProfissional"
+                   value="Empregado"
+                   [(ngModel)]="participante.situacaoProfissional">
+            Empregado
+          </label>
+
+          <label>
+            <input type="radio" name="situacaoProfissional"
+                   value="Autônomo"
+                   [(ngModel)]="participante.situacaoProfissional">
+            Autônomo
+          </label>
+
+          <label>
+            <input type="radio" name="situacaoProfissional"
+                   value="Empresário"
+                   [(ngModel)]="participante.situacaoProfissional">
+            Empresário
+          </label>
+
+          <label>
+            <input type="radio" name="situacaoProfissional"
+                   value="Desempregado"
+                   [(ngModel)]="participante.situacaoProfissional">
+            Desempregado
+          </label>
+        </div>
+      </div>
+
+      <div *ngIf="ehEstudante" class="bloco-condicional">
+        <div class="campo">
+          <label for="instituicao">Instituição de ensino</label>
+          <input
+            id="instituicao"
+            type="text"
+            name="instituicao"
+            [(ngModel)]="participante.instituicao"
+            #instituicao="ngModel"
+            required>
+
+          <small class="erro" *ngIf="instituicao.invalid && instituicao.touched">
+            A instituição é obrigatória.
+          </small>
+        </div>
+
+        <div class="campo">
+          <label for="curso">Curso</label>
+          <input
+            id="curso"
+            type="text"
+            name="curso"
+            [(ngModel)]="participante.curso"
+            #curso="ngModel"
+            required>
+
+          <small class="erro" *ngIf="curso.invalid && curso.touched">
+            O curso é obrigatório.
+          </small>
+        </div>
+      </div>
+
+      <div *ngIf="ehProfissional" class="bloco-condicional">
+        <div class="campo">
+          <label for="empresa">Empresa</label>
+          <input
+            id="empresa"
+            type="text"
+            name="empresa"
+            [(ngModel)]="participante.empresa"
+            #empresa="ngModel"
+            required>
+
+          <small class="erro" *ngIf="empresa.invalid && empresa.touched">
+            A empresa é obrigatória.
+          </small>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Preferências do Evento</legend>
+
+      <div class="campo">
+        <label for="areaInteresse">Área de interesse</label>
+        <select
+          id="areaInteresse"
+          name="areaInteresse"
+          [(ngModel)]="participante.areaInteresse"
+          #areaInteresse="ngModel"
+          required>
+          <option value="">Selecione uma área</option>
+          <option>Desenvolvimento Front-End</option>
+          <option>Desenvolvimento Back-End</option>
+          <option>Desenvolvimento Mobile</option>
+          <option>Desenvolvimento de Jogos</option>
+          <option>Inteligência Artificial</option>
+          <option>Ciência de Dados</option>
+          <option>Segurança da Informação</option>
+          <option>UX/UI</option>
+        </select>
+
+        <small class="erro" *ngIf="areaInteresse.invalid && areaInteresse.touched">
+          Selecione uma área de interesse.
+        </small>
+      </div>
+
+      <div class="campo">
+        <label>Nível de experiência</label>
+
+        <div class="opcoes">
+          <label>
+            <input type="radio" name="nivelExperiencia"
+                   value="Iniciante"
+                   [(ngModel)]="participante.nivelExperiencia"
+                   required>
+            Iniciante
+          </label>
+
+          <label>
+            <input type="radio" name="nivelExperiencia"
+                   value="Intermediário"
+                   [(ngModel)]="participante.nivelExperiencia">
+            Intermediário
+          </label>
+
+          <label>
+            <input type="radio" name="nivelExperiencia"
+                   value="Avançado"
+                   [(ngModel)]="participante.nivelExperiencia">
+            Avançado
+          </label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>Você participará presencialmente ou on-line?</label>
+
+        <div class="opcoes">
+          <label>
+            <input type="radio" name="modalidade"
+                   value="Presencial"
+                   [(ngModel)]="participante.modalidade"
+                   required>
+            Presencial
+          </label>
+
+          <label>
+            <input type="radio" name="modalidade"
+                   value="On-line"
+                   [(ngModel)]="participante.modalidade">
+            On-line
+          </label>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="tecnologia">Tecnologia de maior interesse</label>
+        <select
+          id="tecnologia"
+          name="tecnologia"
+          [(ngModel)]="participante.tecnologia"
+          #tecnologia="ngModel"
+          required>
+          <option value="">Selecione uma tecnologia</option>
+          <option>Angular</option>
+          <option>Java</option>
+          <option>.NET</option>
+          <option>Node.js</option>
+          <option>React</option>
+          <option>Flutter</option>
+          <option>Inteligência Artificial</option>
+          <option>Desenvolvimento de Jogos</option>
+        </select>
+
+        <small class="erro" *ngIf="tecnologia.invalid && tecnologia.touched">
+          Selecione uma tecnologia.
+        </small>
+      </div>
+
+      <label class="checkbox-linha" *ngIf="ehPresencial">
+        <input
+          type="checkbox"
+          name="estacionamento"
+          [(ngModel)]="participante.estacionamento">
+        Necessito utilizar o estacionamento do evento.
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Workshops de interesse</legend>
+
+      <div class="opcoes opcoes-coluna">
+        <label>
+          <input type="checkbox"
+                 name="workshopAngular"
+                 [(ngModel)]="participante.workshops.angular">
+          Angular
+        </label>
+
+        <label>
+          <input type="checkbox"
+                 name="workshopJava"
+                 [(ngModel)]="participante.workshops.java">
+          Java
+        </label>
+
+        <label>
+          <input type="checkbox"
+                 name="workshopJogos"
+                 [(ngModel)]="participante.workshops.jogos">
+          Desenvolvimento de Jogos
+        </label>
+
+        <label>
+          <input type="checkbox"
+                 name="workshopIA"
+                 [(ngModel)]="participante.workshops.ia">
+          Inteligência Artificial
+        </label>
+
+        <label>
+          <input type="checkbox"
+                 name="workshopMobile"
+                 [(ngModel)]="participante.workshops.mobile">
+          Desenvolvimento Mobile
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Observações</legend>
+
+      <div class="campo">
+        <label for="observacoes">Observações adicionais</label>
+        <textarea
+          id="observacoes"
+          name="observacoes"
+          rows="5"
+          maxlength="300"
+          [(ngModel)]="participante.observacoes">
+        </textarea>
+
+        <small class="contador">
+          {{ participante.observacoes.length }} / 300 caracteres
+        </small>
+      </div>
+    </fieldset>
+
+    <div class="termos">
+      <label>
+        <input
+          type="checkbox"
+          name="aceitouTermos"
+          [(ngModel)]="participante.aceitouTermos"
+          required>
+        Li e aceito os termos de participação do evento.
+      </label>
+    </div>
+
+    <button
+      class="botao-enviar"
+      type="submit"
+      [disabled]="formulario.invalid">
+      REALIZAR INSCRIÇÃO
+    </button>
+  </form>
+
+  <div class="sucesso" *ngIf="inscricaoRealizada">
+    <h3>Inscrição realizada com sucesso!</h3>
+    <p>Os dados também foram exibidos no console do navegador.</p>
+  </div>
+</section>
